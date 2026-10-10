@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Information Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>✦ Employee System</h2>
+
+            <nav>
+                <button class="nav-btn active" data-page="dashboard">⌂ Dashboard</button>
+                <button class="nav-btn" data-page="employees">♙ Employees</button>
+                <button class="nav-btn" data-page="attendance">▣ Attendance</button>
+                <button class="nav-btn" data-page="reports">▤ Reports</button>
+                <button class="nav-btn" data-page="settings">⚙ Settings</button>
+            </nav>
+
+            <div class="admin">
+                <strong>Admin</strong>
+                <small>admin@company.com</small>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <input type="search" id="globalSearch"
+                       placeholder="Search employees...">
+                <span>Admin ▾</span>
+            </header>
+
+            <section id="dashboard" class="page">
+                <h1>Dashboard</h1>
+                <p>Here's what's happening today.</p>
+
+                <div class="stats">
+                    <div class="card">
+                        <p>Total Employees</p>
+                        <h2 id="totalEmployees">0</h2>
+                    </div>
+
+                    <div class="card">
+                        <p>Active Employees</p>
+                        <h2 id="activeEmployees">0</h2>
+                    </div>
+
+                    <div class="card">
+                        <p>On Leave</p>
+                        <h2 id="leaveEmployees">0</h2>
+                    </div>
+
+                    <div class="card">
+                        <p>Departments</p>
+                        <h2 id="totalDepartments">0</h2>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Recent Employees</h3>
+                    <p>View employee records in the Employees section.</p>
+                    <button class="primary-btn" onclick="showPage('employees')">
+                        View Employees
+                    </button>
+                </div>
+            </section>
+
+            <section id="employees" class="page hidden">
+                <div class="heading-row">
+                    <div>
+                        <h1>Employees</h1>
+                        <p>Manage and view all employee records.</p>
+                    </div>
+                    <button class="primary-btn" onclick="openForm()">
+                        + Add Employee
+                    </button>
+                </div>
+
+                <div class="card">
+                    <input type="search" id="employeeSearch"
+                           placeholder="Search by name, ID, or department...">
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Employee ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Position</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employeeTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="attendance" class="page hidden">
+                <h1>Attendance</h1>
+                <p>Employee attendance management.</p>
+                <div class="card">
+                    Attendance tracking can be connected to a database
+                    or a time-in/time-out system.
+                </div>
+            </section>
+
+            <section id="reports" class="page hidden">
+                <h1>Reports</h1>
+                <p>Employee information summary.</p>
+                <div class="card" id="reportSummary"></div>
+            </section>
+
+            <section id="settings" class="page hidden">
+                <h1>Settings</h1>
+                <p>System information and configuration.</p>
+                <div class="card">
+                    <h3>Employee Information System</h3>
+                    <p>Version 1.0</p>
+                    <p>Manage employee information and employment status.</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Add/Edit Employee Form -->
+    <div id="employeeModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="heading-row">
+                <h2 id="formTitle">Add Employee</h2>
+                <button class="close-btn" onclick="closeForm()">×</button>
+            </div>
+
+            <form id="employeeForm">
+                <input type="hidden" id="employeeId">
+
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required>
+
+                <label for="department">Department</label>
+                <select id="department" required>
+                    <option value="">Select Department</option>
+                    <option>IT Department</option>
+                    <option>HR Department</option>
+                    <option>Finance Department</option>
+                    <option>Marketing Department</option>
+                    <option>Operations Department</option>
+                </select>
+
+                <label for="position">Position</label>
+                <input type="text" id="position" required>
+
+                <label for="salaryCategory">Salary Category</label>
+                <select id="salaryCategory">
+                    <option>Entry Level</option>
+                    <option>Mid Level</option>
+                    <option>Senior Level</option>
+                    <option>Managerial</option>
+                </select>
+
+                <label for="status">Employment Status</label>
+                <select id="status">
+                    <option>Active</option>
+                    <option>On Leave</option>
+                    <option>Inactive</option>
+                </select>
+
+                <label for="contact">Contact Number</label>
+                <input type="tel" id="contact">
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email">
+
+                <div class="form-actions">
+                    <button type="button" class="secondary-btn"
+                            onclick="closeForm()">Cancel</button>
+                    <button type="submit" class="primary-btn">Save Employee</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
